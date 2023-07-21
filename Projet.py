@@ -17,10 +17,11 @@ with GraphDatabase.driver(URI, auth=tuple(LOGIN_AND_PWD)) as driver:
 
 def afficher_finales(driver):
     with driver.session() as session:
-        resulat =session.run ("MATCH (f:Final) RETURN f.year As Anne, f.country AS pays;")
+        resulat =session.run ("MATCH (f:Final) RETURN f.year, f.country;")
         for record in resulat:
             print("Pays", record["f.country"])
             print("Année", record["f.year"])
+            print("\n")
 
 afficher_finales(driver)
 
