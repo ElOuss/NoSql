@@ -22,8 +22,16 @@ def afficher_finales(driver):
             print("Pays", record["f.country"])
             print("Année", record["f.year"])
             print("\n")
+def afficher_equipes_finale(driver):
+    with driver.session() as session:
+        resulat =session.run ("MATCH (t:Team) RETURN t.name")
+        for record in resulat:
+            print(record['t.name'])
+            print("\n")
 
-afficher_finales(driver)
+
+
+afficher_equipes_finale(driver)
 
 driver.close()
 
